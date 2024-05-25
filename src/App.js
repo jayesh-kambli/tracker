@@ -24,7 +24,7 @@ function App() {
     <Context.Provider value={{ expenses, setXpenses, open, setOpen, bal, setBal, totalExp, setTotalExp, percentage, setPercentage }}>
       <div className='background'>
             <Tracker />
-            <Transac />
+            {/* <Transac /> */}
       </div>
     </Context.Provider>
   );

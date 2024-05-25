@@ -158,66 +158,80 @@ export default function Tracker() {
     );
   };
 
-  return (<>
-    <div className="expMainBg">
-      <h1 style={{ margin: 0, marginBottom: "1rem" }}>Expense Tracker</h1>
-      <Stack
-        className="subExpBg"
-        direction="row"
-        justifyContent="center"
-        alignItems="center"
-      >
-        <Grid container>
-          <Grid item xs={12} md={4} className="myGridItem">
-            <Card
-              text={"Wallet Balance"}
-              price={bal}
-              PrColor={"#9DFF5B"}
-              btn={"Add Income"}
-              btnColor={"linear-gradient(90deg, #B5DC52 0%, #89E148 100%)"}
-              click={handleOpen2}
-            />
+  return (
+    <>
+      <div className="expMainBg">
+        <h1 style={{ margin: 0, marginBottom: "1rem" }}>Expense Tracker</h1>
+        <Stack
+          className="subExpBg"
+          direction="row"
+          justifyContent="center"
+          alignItems="center"
+        >
+          <Grid container>
+            <Grid item xs={12} md={4} className="myGridItem">
+              <Card
+                text={"Wallet Balance"}
+                price={bal}
+                PrColor={"#9DFF5B"}
+                btn={"Add Income"}
+                btnColor={"linear-gradient(90deg, #B5DC52 0%, #89E148 100%)"}
+                click={handleOpen2}
+              />
+            </Grid>
+            <Grid item xs={12} md={4} className="myGridItem">
+              <Card
+                text={"Expenses"}
+                price={totalExp}
+                PrColor={"#F4BB4A"}
+                btn={"Add Expense"}
+                btnColor={
+                  "linear-gradient(90deg, #FF9595 0%, #FF4747 80%, #FF3838 100%)"
+                }
+                click={handleOpen}
+              />
+            </Grid>
+            <Grid item xs={12} md={4} className="myGridItem">
+              <Pie />
+            </Grid>
           </Grid>
-          <Grid item xs={12} md={4} className="myGridItem">
-            <Card
-              text={"Expenses"}
-              price={totalExp}
-              PrColor={"#F4BB4A"}
-              btn={"Add Expense"}
-              btnColor={
-                "linear-gradient(90deg, #FF9595 0%, #FF4747 80%, #FF3838 100%)"
-              }
-              click={handleOpen}
-            />
-          </Grid>
-          <Grid item xs={12} md={4} className="myGridItem">
-            <Pie />
-          </Grid>
-        </Grid>
-      </Stack>
-      <CustomModal
-        head={"Add Expenses"}
-        click={() => {
-          if (
-            document.getElementById("title").value == "" ||
-            document.getElementById("price").value <= 0 ||
-            document.getElementById("cate").value == "0" ||
-            document.getElementById("date").value == ""
-          ) {
-            handleClick3();
-          } else {
-            let againtotal =
-              totalExp + parseInt(document.getElementById("price").value);
-            if (againtotal > bal) {
-              console.log("not possible");
+        </Stack>
+
+        <Transac />
+        <CustomModal
+          head={"Add Expenses"}
+          click={() => {
+            if (
+              document.getElementById("title").value == "" ||
+              document.getElementById("price").value <= 0 ||
+              document.getElementById("cate").value == "0" ||
+              document.getElementById("date").value == ""
+            ) {
+              handleClick3();
             } else {
-              let NewEleNo =
-                expenses.length >= 1
-                  ? expenses[expenses.length - 1].ele + 1
-                  : 0;
-              localStorage.setItem(
-                "trData",
-                JSON.stringify([
+              let againtotal =
+                totalExp + parseInt(document.getElementById("price").value);
+              if (againtotal > bal) {
+                console.log("not possible");
+              } else {
+                let NewEleNo =
+                  expenses.length >= 1
+                    ? expenses[expenses.length - 1].ele + 1
+                    : 0;
+                localStorage.setItem(
+                  "trData",
+                  JSON.stringify([
+                    ...expenses,
+                    {
+                      title: document.getElementById("title").value,
+                      price: document.getElementById("price").value,
+                      category: document.getElementById("cate").value,
+                      date: document.getElementById("date").value,
+                      // ele: NewEleNo,
+                    },
+                  ])
+                );
+                setXpenses([
                   ...expenses,
                   {
                     title: document.getElementById("title").value,
@@ -226,75 +240,67 @@ export default function Tracker() {
                     date: document.getElementById("date").value,
                     // ele: NewEleNo,
                   },
-                ])
-              );
-              setXpenses([
-                ...expenses,
-                {
-                  title: document.getElementById("title").value,
-                  price: document.getElementById("price").value,
-                  category: document.getElementById("cate").value,
-                  date: document.getElementById("date").value,
-                  // ele: NewEleNo,
-                },
-              ]);
-              handleClose();
+                ]);
+                handleClose();
+              }
             }
-          }
-        }}
-      />
-      <Modal
-        open={open2}
-        onClose={handleClose2}
-        aria-labelledby="modal-modal-title"
-        aria-describedby="modal-modal-description"
-      >
-        <Box sx={style}>
-          <div style={{ width: "90%" }}>
-            <h1>Add Balance</h1>
-          </div>
-          <Stack
-            direction="row"
-            justifyContent="start"
-            alignItems="center"
-            style={{ width: "90%", marginBlock: "1rem" }}
-          >
-            <input
-              className="dialogInput"
-              type="text"
-              placeholder="Income Amount"
-              id="newBal"
-            />
-            <button
-              className="dialogInput dialogBtn"
-              onClick={() => {
-                setBal(bal + parseInt(document.getElementById("newBal").value));
-                localStorage.setItem(
-                  "bal",
-                  bal + parseInt(document.getElementById("newBal").value)
-                );
-                handleClose3();
-              }}
+          }}
+        />
+        <Modal
+          open={open2}
+          onClose={handleClose2}
+          aria-labelledby="modal-modal-title"
+          aria-describedby="modal-modal-description"
+        >
+          <Box sx={style}>
+            <div style={{ width: "90%" }}>
+              <h1>Add Balance</h1>
+            </div>
+            <Stack
+              direction="row"
+              justifyContent="start"
+              alignItems="center"
+              style={{ width: "90%", marginBlock: "1rem" }}
             >
-              Add Expenses
-            </button>
-            <button
-              className="dialogInput dialogBtn dialogBtn2"
-              onClick={handleClose2}
-            >
-              Cancle
-            </button>
-          </Stack>
-        </Box>
-      </Modal>
-      <Snackbar
-        open={open3}
-        autoHideDuration={6000}
-        onClose={handleClose3}
-        message="Give Proper Inputes"
-        action={action}
-      />
-    </div>
+              <input
+                className="dialogInput"
+                type="text"
+                placeholder="Income Amount"
+                id="newBal"
+              />
+              <button
+                className="dialogInput dialogBtn"
+                onClick={() => {
+                  setBal(
+                    bal + parseInt(document.getElementById("newBal").value)
+                  );
+                  localStorage.setItem(
+                    "bal",
+                    bal + parseInt(document.getElementById("newBal").value)
+                  );
+                  handleClose3();
+                }}
+              >
+                Add Expenses
+              </button>
+              <button
+                className="dialogInput dialogBtn dialogBtn2"
+                onClick={handleClose2}
+              >
+                Cancle
+              </button>
+            </Stack>
+          </Box>
+        </Modal>
+        <Snackbar
+          open={open3}
+          autoHideDuration={6000}
+          onClose={handleClose3}
+          message="Give Proper Inputes"
+          action={action}
+        />
+      </div>
+      {/* <Transac /> */}
     </>
   );
 }

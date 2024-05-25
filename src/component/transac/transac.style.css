@@ -1,6 +1,10 @@
 .transacMainBg {
     color: white;
     margin-top: 1rem;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    width: 100%;
 }
 
 .BgColor {
@@ -9,8 +13,10 @@
 }
 
 .firstSection {
-    width: 65vw;
-    margin-right: 2rem;
+    /* width: 65vw; */
+    width: 100%;
+    padding: 0.5rem;
+    /* margin-inline: 1rem; */
 }
 
 .BarChartComponent {
@@ -18,7 +24,9 @@
 }
 
 .BarDiagramBg {
-    width: 30vw;
+    /* width: 30vw; */
+    width: 100%;
+    padding: 0.5rem;
 }
 
 .BarDiagram {
@@ -34,6 +42,7 @@
     padding-inline: 2rem;
     padding-block: 1rem;
     box-sizing: border-box;
+    width: 100%;
 }
 
 .count {

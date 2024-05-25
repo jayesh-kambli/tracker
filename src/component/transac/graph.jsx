@@ -3,18 +3,14 @@ import Context from "../context";
 
 import { BarChart, Bar, XAxis, YAxis } from "recharts";
 
-// const data = [
-//   { name: "Entertainment", value: 80 },
-//   { name: "Food", value: 50 },
-//   { name: "Travel", value: 20 },
-// ];
 
 const BarChartComponent = () => {
   const { percentage, setPercentage } = useContext(Context);
+
   const [data, setdata] = useState([
-    { name: "Food", value: 30 },
-    { name: "Entertainment", value: 70 },
-    { name: "Travel", value: 10 },
+    { name: "Food", value: 0 },
+    { name: "Entertainment", value: 0 },
+    { name: "Travel", value: 0 },
   ]);
 
 useEffect(() => {

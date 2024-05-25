@@ -11,15 +11,17 @@
     border-radius: 1rem;
     padding: 1rem;
     height: max-content;
-    height: 30vh;
+    /* height: 30vh; */
 }
 
 .card {
     background-color: var(--color-light2);
     border-radius: 1rem;
-    width: 30vw;
+    width: 90%;
+    /* width: 30vw; */
     padding-block: 4rem;
     margin-inline: 1rem;
+    margin-block: 1rem;
 }
 
 .addIncBtn {
@@ -55,3 +57,10 @@
 .dialogBtn:hover, .dialogBtn2:hover {
     cursor: pointer;
 } 
+
+.myGridItem {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    flex-direction: column;
+}

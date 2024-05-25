@@ -12,6 +12,8 @@ import IconButton from "@mui/material/IconButton";
 import CloseIcon from "@mui/icons-material/Close";
 import Context from "./../context";
 import CustomModal from "../dialog";
+import Grid from "@mui/material/Grid";
+import Transac from "../transac/transac";
 
 const style = {
   position: "absolute",
@@ -77,7 +79,7 @@ export default function Tracker() {
     let travel = 0;
     expenses.forEach((ele) => {
       totalCount += parseInt(ele.price);
-      
+
       let price = parseInt(ele.price);
       ele.category == "Entertainment"
         ? (ent += price)
@@ -156,7 +158,7 @@ export default function Tracker() {
     );
   };
 
-  return (
+  return (<>
     <div className="expMainBg">
       <h1 style={{ margin: 0, marginBottom: "1rem" }}>Expense Tracker</h1>
       <Stack
@@ -165,25 +167,33 @@ export default function Tracker() {
         justifyContent="center"
         alignItems="center"
       >
-        <Card
-          text={"Wallet Balance"}
-          price={bal}
-          PrColor={"#9DFF5B"}
-          btn={"Add Income"}
-          btnColor={"linear-gradient(90deg, #B5DC52 0%, #89E148 100%)"}
-          click={handleOpen2}
-        />
-        <Card
-          text={"Expenses"}
-          price={totalExp}
-          PrColor={"#F4BB4A"}
-          btn={"Add Expense"}
-          btnColor={
-            "linear-gradient(90deg, #FF9595 0%, #FF4747 80%, #FF3838 100%)"
-          }
-          click={handleOpen}
-        />
-        <Pie />
+        <Grid container>
+          <Grid item xs={12} md={4} className="myGridItem">
+            <Card
+              text={"Wallet Balance"}
+              price={bal}
+              PrColor={"#9DFF5B"}
+              btn={"Add Income"}
+              btnColor={"linear-gradient(90deg, #B5DC52 0%, #89E148 100%)"}
+              click={handleOpen2}
+            />
+          </Grid>
+          <Grid item xs={12} md={4} className="myGridItem">
+            <Card
+              text={"Expenses"}
+              price={totalExp}
+              PrColor={"#F4BB4A"}
+              btn={"Add Expense"}
+              btnColor={
+                "linear-gradient(90deg, #FF9595 0%, #FF4747 80%, #FF3838 100%)"
+              }
+              click={handleOpen}
+            />
+          </Grid>
+          <Grid item xs={12} md={4} className="myGridItem">
+            <Pie />
+          </Grid>
+        </Grid>
       </Stack>
       <CustomModal
         head={"Add Expenses"}
@@ -285,5 +295,6 @@ export default function Tracker() {
         action={action}
       />
     </div>
+    </>
   );
 }

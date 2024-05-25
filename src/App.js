@@ -5,6 +5,7 @@ import Tracker from './component/expTracker/expTracker';
 import Transac from './component/transac/transac';
 import Context from "./component/context";
 import { useState } from 'react';
+import Grid from '@mui/material/Grid';
 
 function App() {
   const [expenses, setXpenses] = useState([]);
@@ -20,10 +21,10 @@ function App() {
   // const [dialogTitle, setXpenses] = useState([]);
   const [open, setOpen] = React.useState(false);
   return (
-    <Context.Provider value={{expenses, setXpenses, open, setOpen, bal, setBal, totalExp, setTotalExp, percentage, setPercentage}}>
+    <Context.Provider value={{ expenses, setXpenses, open, setOpen, bal, setBal, totalExp, setTotalExp, percentage, setPercentage }}>
       <div className='background'>
-        <Tracker />
-        <Transac />
+            <Tracker />
+            <Transac />
       </div>
     </Context.Provider>
   );

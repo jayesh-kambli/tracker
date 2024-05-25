@@ -1,0 +1,55 @@
+.transacMainBg {
+    color: white;
+}
+
+.BgColor {
+    background-color: white;
+    border-radius: 1rem;
+}
+
+.firstSection {
+    width: 65vw;
+    margin-right: 2rem;
+}
+
+.BarChartComponent {
+    height: 100vh;
+}
+
+.BarDiagramBg {
+    width: 30vw;
+}
+
+.BarDiagram {
+    border-radius: 1rem;
+    height: 40vh;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.innerFirst {
+    height: 40vh;
+    padding-inline: 2rem;
+    padding-block: 1rem;
+    box-sizing: border-box;
+}
+
+.count {
+    background-color: #43967B;
+    padding: 1rem;
+    border-radius: 1rem;
+}
+
+.arrow {
+    background-color: #F1F1F1;
+    border-radius: 1rem;
+    padding: 1.5rem;
+    box-shadow: 0px 4px 4px 0px #00000040;
+
+}
+
+.count, .arrow {
+    height: max-content;
+    margin-inline: 1rem;
+}
